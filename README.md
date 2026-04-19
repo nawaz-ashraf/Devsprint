@@ -1,36 +1,150 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nawaz Studio — Premium Futuristic Developer Portfolio
 
-## Getting Started
+Production-ready personal portfolio + freelancing website built for a coding-focused developer brand.
 
-First, run the development server:
+## Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- Next.js 16 (App Router)
+- React 19 + TypeScript
+- Tailwind CSS
+- Framer Motion
+- Three.js + React Three Fiber + Drei
+- GSAP ScrollTrigger + Lenis smooth scrolling
+- Resend (contact brief delivery)
+
+## Experience Highlights
+
+- Sticky premium navbar with mobile hamburger menu
+- Immersive hero with futuristic **3D cyber coding core** (inspired by your reference composition)
+- Mouse-reactive + scroll-reactive hero 3D object
+- Flutter-focused premium app showcase cards with CTA actions
+- Productized services grid (7 services)
+- Professional About section with mission and skill highlights
+- Why Work With Me trust section
+- Testimonial + social proof section with trust stats
+- Conversion-focused contact/project-brief form with validation
+- Form submission to backend route + email delivery via Resend
+- Premium footer with quick links and social/contact links
+- Responsive performance constraints for mobile/low-end devices
+
+## Folder Structure
+
+```text
+Devsprint/
+├── .env.example
+├── next.config.ts
+├── package.json
+├── postcss.config.mjs
+├── tailwind.config.ts
+├── tsconfig.json
+├── README.md
+└── src/
+    ├── app/
+    │   ├── api/
+    │   │   └── contact/
+    │   │       └── route.ts
+    │   ├── globals.css
+    │   ├── layout.tsx
+    │   ├── opengraph-image.tsx
+    │   ├── page.tsx
+    │   └── twitter-image.tsx
+    ├── components/
+    │   ├── effects/
+    │   │   ├── CursorGlow.tsx
+    │   │   ├── MagneticButton.tsx
+    │   │   ├── MouseFollowLight.tsx
+    │   │   └── RippleButton.tsx
+    │   ├── hero/
+    │   │   └── HeroSection.tsx
+    │   ├── layout/
+    │   │   ├── SiteFooter.tsx
+    │   │   ├── SmoothScrollProvider.tsx
+    │   │   └── StickyHeader.tsx
+    │   ├── page/
+    │   │   └── PortfolioExperience.tsx
+    │   ├── sections/
+    │   │   ├── AboutSection.tsx
+    │   │   ├── ContactSection.tsx
+    │   │   ├── ProjectsSection.tsx
+    │   │   ├── ServicesSection.tsx
+    │   │   ├── StorySection.tsx
+    │   │   ├── TestimonialsSection.tsx
+    │   │   └── WhyChooseSection.tsx
+    │   └── three/
+    │       ├── FloatingOrb.tsx
+    │       └── HeroCanvas.tsx
+    ├── data/
+    │   ├── projects.ts
+    │   └── services.ts
+    ├── hooks/
+    │   ├── useDeviceTier.ts
+    │   ├── useIsMobile.ts
+    │   ├── useMousePosition.ts
+    │   ├── useReducedMotionSafe.ts
+    │   └── useScrollProgress.ts
+    ├── lib/
+    │   ├── analytics/
+    │   │   └── track.ts
+    │   ├── animations/
+    │   │   ├── presets.ts
+    │   │   └── scroll.ts
+    │   └── utils/
+    │       └── cn.ts
+    └── types/
+        └── content.ts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Contact Form Flow (Where data goes)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Client form submits to: `POST /api/contact`
+- Route file: `src/app/api/contact/route.ts`
+- Server validates payload (name, email, optional company, project type, budget, message)
+- On success, backend sends email through Resend
+- Destination inbox is controlled by `CONTACT_TO_EMAIL`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This makes project briefs useful/reliable for real freelance lead intake.
 
-## Learn More
+## Environment Variables
 
-To learn more about Next.js, take a look at the following resources:
+Create `.env` from `.env.example`:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+cp .env.example .env
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Required values:
 
-## Deploy on Vercel
+- `RESEND_API_KEY`
+- `CONTACT_FROM_EMAIL` (must be verified sender in Resend)
+- `CONTACT_TO_EMAIL` (your inbox)
+- `NEXT_PUBLIC_SITE_URL` (public site URL)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Run Locally
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm install
+npm run dev
+```
+
+Open: `http://localhost:3000`
+
+## Validate Production Build
+
+```bash
+npm run lint
+npm run build
+npm run start
+```
+
+## Deploy (Vercel)
+
+1. Push repository to GitHub
+2. Import repo in Vercel
+3. Add all env variables in Vercel project settings
+4. Deploy
+
+## Notes
+
+- 3D effects degrade gracefully on constrained devices
+- Heavy interaction layers are reduced on mobile/reduced-motion contexts
+- OG/Twitter images are dynamically generated from App Router image routes
